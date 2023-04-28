@@ -67,7 +67,7 @@ import mem as memory
 with Live(layout, refresh_per_second = 1, screen = True):
     while True:
             
-        layout["UB2"].update(memory.more_mem_info())
+        layout["UB2"].update(memory.more_info())
         
         if keyboard.is_pressed("esc"):
             sys.exit()

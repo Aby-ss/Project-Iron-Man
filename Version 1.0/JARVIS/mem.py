@@ -46,10 +46,16 @@ def more_info():
     platform_info = platform.platform()
     os = platform.system()
     
+    free_mem = psutil.virtual_memory()[4]
+    used_mem = psutil.virtual_memory()[3]
+    total_mem = psutil.virtual_memory()[0]  
+    
+    hdd = psutil.disk_usage('/') 
+    
     #print(processor + " || " + machine_type + " || " + architecture + " || " + platform_info + " || " + os)
     # Intel64 Family 6 Model 126 Stepping 5, GenuineIntel || AMD64 || 64bit || Windows-10-10.0.19043-SP0 || Windows
     
-    info_panel = Panel(f"[b]Processor : {processor}\nAMD version : {machine_type}\nArchitecture : {architecture}\nPlatform Info : {platform_info}\nOS : {os}", title = f"[b] {platform_info}", title_align = "left", box = box.SQUARE)
+    info_panel = Panel(f"[b]Processor : {processor}\nAMD version : {machine_type}\nArchitecture : {architecture}\nPlatform Info : {platform_info}\nOS : {os}\n\n\n[b]Free Memory : {free_mem} Bytes 📚\nUsed Mmeory : {used_mem} Bytes 🔥\nTotal Memory : {total_mem} Bytes 💼", title = f"[b] {platform_info}", title_align = "left", box = box.SQUARE)
     
     return info_panel
 
