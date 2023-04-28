@@ -56,3 +56,5 @@ class Footer:
 
 layout["Header"].update(Header())
 layout["Footer"].update(Footer())
+
+print(layout)
