@@ -40,7 +40,7 @@ class Header:
         grid.add_column(justify="center", ratio=1)
         grid.add_column(justify="right")
 
-        grid.add_row("🧠", "[b]J.A.R.V.I.S[/] [b red]V1.0[/]", datetime.now().ctime().replace(":", "[blink]:[/]"))
+        grid.add_row("🧠", "[b]J.A.R.V.I.S[/] [i red]V1.0[/]", datetime.now().ctime().replace(":", "[blink]:[/]"))
 
         return Panel(grid, style = "Bold white on Black")
 
