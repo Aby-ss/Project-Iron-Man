@@ -27,7 +27,7 @@ layout["Body"].split_column(
         Layout(name = "Lower_Body")
         )
 layout["Upper_Body"].split_row(Layout(name = "UB1"), Layout(name = "UB2"))
-layout["Lower_Body"].split_row(Layout(name = "LB1"), Layout(name - "LB2"))
+layout["Lower_Body"].split_row(Layout(name = "LB1"), Layout(name = "LB2"))
 layout["Header"].size = 3
 layout["Footer"].size = 3
 
