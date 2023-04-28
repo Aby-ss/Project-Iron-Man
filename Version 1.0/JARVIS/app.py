@@ -14,6 +14,8 @@ from datetime import datetime
 import numpy as np
 import asciichartpy
 import csv
+import keyboard
+from time import sleep
 
 layout = Layout()
 layout.split_column(
@@ -56,5 +58,20 @@ class Footer:
 
 layout["Header"].update(Header())
 layout["Footer"].update(Footer())
+
+layout["UB2"].size = 75
+
+import cpu as pc
+import mem as memory
+
+with Live(layout, refresh_per_second = 1, screen = True):
+    while True:
+            
+        layout["UB2"].update(memory.more_mem_info())
+        
+        if keyboard.is_pressed("esc"):
+            sys.exit()
+            
+        sleep(0.2)
 
 print(layout)
