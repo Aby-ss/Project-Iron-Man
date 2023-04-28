@@ -11,7 +11,7 @@ install(show_locals=True)
 from rich.console import Console
 
 from datetime import datetime
-from numpy as np
+import numpy as np
 import asciichartpy
 import csv
 
