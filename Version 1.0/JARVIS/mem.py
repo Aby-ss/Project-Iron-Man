@@ -39,7 +39,7 @@ def more_mem_info():
     
     return Panel(info_panel, title = "[b] MORE INFO ON MEMORY", box = box.SQUARE) 
 
-def more_info():
+def more_info(mem_usage, bars = 50):
     processor = platform.processor()
     machine_type = platform.machine()
     architecture = platform.architecture()[0]
@@ -52,10 +52,23 @@ def more_info():
     
     hdd = psutil.disk_usage('/') 
     
+    path = "C:/Users/hadir"
+  
+    # Get the disk usage statistics
+    # about the given path
+    stat = shutil.disk_usage(path)
+
+    mem_percent = (mem_usage / 100)
+    mem_bar = '█' * int(mem_percent * bars) + '-' * (bars - int(mem_percent * bars))
+    
+    mem_info = f"  MEMORY Usage : |{mem_bar}| {mem_usage:.2f}% "
+    
+    mem_panel = Panel(f"\n \n \n{mem_info}", border_style = "bold", box = box.SQUARE, title = f"[b]Total [C:/Users/hadir]: {stat[0]}", title_align = "left")
+    
     #print(processor + " || " + machine_type + " || " + architecture + " || " + platform_info + " || " + os)
     # Intel64 Family 6 Model 126 Stepping 5, GenuineIntel || AMD64 || 64bit || Windows-10-10.0.19043-SP0 || Windows
     
-    info_panel = Panel(f"[b]Processor : {processor}\nAMD version : {machine_type}\nArchitecture : {architecture}\nPlatform Info : {platform_info}\nOS : {os}\n\n\n[b]Free Memory : {free_mem} Bytes 📚\nUsed Mmeory : {used_mem} Bytes 🔥\nTotal Memory : {total_mem} Bytes 💼", title = f"[b] {platform_info}", title_align = "left", box = box.SQUARE)
+    info_panel = Panel(f"[b]Processor : {processor}\nAMD version : {machine_type}\nArchitecture : {architecture}\nPlatform Info : {platform_info}\nOS : {os}\n\n\n[b]Free Memory : {free_mem} Bytes 📚\nUsed Mmeory : {used_mem} Bytes 🔥\nTotal Memory : {total_mem} Bytes 💼\n\n\n\n {mem_info}", title = f"[b] {platform_info}", title_align = "left", box = box.SQUARE)
     
     return info_panel
 

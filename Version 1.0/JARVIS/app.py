@@ -40,7 +40,7 @@ class Header:
         grid.add_column(justify="center", ratio=1)
         grid.add_column(justify="right")
 
-        grid.add_row("🧠", "[b]J.A.R.V.I.S[/] [i red]V1.0[/]", datetime.now().ctime().replace(":", "[blink]:[/]"))
+        grid.add_row("🧠", "[b]J.A.R.V.I.S[/] [b i red]V1.0[/]", datetime.now().ctime().replace(":", "[blink]:[/]"))
 
         return Panel(grid, style = "Bold white on Black")
 
@@ -67,7 +67,7 @@ import mem as memory
 with Live(layout, refresh_per_second = 1, screen = True):
     while True:
             
-        layout["UB2"].update(memory.more_info())
+        layout["UB2"].update(memory.more_info(psutil.virtual_memory().percent, 50))
         
         if keyboard.is_pressed("esc"):
             sys.exit()
