@@ -16,6 +16,8 @@ import asciichartpy
 import csv
 import keyboard
 from time import sleep
+import psutil
+import platform
 
 layout = Layout()
 layout.split_column(
