@@ -32,6 +32,7 @@ layout["Body"].split_column(
         )
 layout["Upper_Body"].split_row(Layout(name = "UB1"), Layout(name = "UB2"))
 layout["Lower_Body"].split_row(Layout(name = "LB1"), Layout(name = "LB2"))
+layout["UB1"].split_column(Layout(name = "UB1_1"), Layout(name = "UB1_2"))
 layout["Header"].size = 3
 layout["Footer"].size = 3
 
@@ -65,11 +66,13 @@ layout["UB2"].size = 75
 
 import cpu as pc
 import mem as memory
+import Weather as weather
 
 with Live(layout, refresh_per_second = 1, screen = True):
     while True:
             
         layout["UB2"].update(memory.more_info(psutil.virtual_memory().percent, 50))
+        layout["UB1_1"].update(weather.weather_API())
         
         if keyboard.is_pressed("esc"):
             sys.exit()
