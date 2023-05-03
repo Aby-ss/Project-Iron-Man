@@ -37,13 +37,19 @@ def CPU(cpu_usage, bars = 50):
 
     return Panel(cpu_panel, title = f"{cpu_name}", title_align = "left",box = box.SQUARE)
 
-def per_CPU():
+def per_CPU(cpu_usage, bars = 50):
     num_cores = psutil.cpu_count(logical=False)
     num_threads = psutil.cpu_count(logical=True)
     cpu_freq = psutil.cpu_freq()[0]
     per_cpu_percent = psutil.cpu_percent(percpu= True)
     
-    per_cpu_info = Panel(f" \n[b]Core 1: {per_cpu_percent[0]}       Core 5: {per_cpu_percent[4]}\nCore 2: {per_cpu_percent[1]}      Core 6: {per_cpu_percent[5]}\nCore 3: {per_cpu_percent[2]}      Core 7: {per_cpu_percent[6]}\nCore 4: {per_cpu_percent[3]}      Core 8: {per_cpu_percent[7]}", title_align = "left", subtitle = f"{cpu_freq} MHz", subtitle_align = "left", box = box.SQUARE)
+    cpu_name = platform.processor() 
+    cpu_percent = (cpu_usage / 100.0)
+    cpu_bar = '█' * int(cpu_percent * bars) + '-' * (bars - int(cpu_percent * bars))
+    
+    cpu_info = f"    CPU Usage : |{cpu_bar}| {cpu_usage:.2f}% "
+    
+    per_cpu_info = Panel(f" \n[b]Core 1: {per_cpu_percent[0]}       Core 5: {per_cpu_percent[4]}\nCore 2: {per_cpu_percent[1]}      Core 6: {per_cpu_percent[5]}\nCore 3: {per_cpu_percent[2]}      Core 7: {per_cpu_percent[6]}\nCore 4: {per_cpu_percent[3]}      Core 8: {per_cpu_percent[7]}\n\n\n {cpu_info}", title_align = "left", subtitle = f"{cpu_freq} MHz", subtitle_align = "left", box = box.SQUARE)
     
     return Panel(per_cpu_info, title = "[b] MORE INFO ON CPU", box = box.SQUARE)
     

@@ -73,6 +73,7 @@ with Live(layout, refresh_per_second = 1, screen = True):
             
         layout["UB2"].update(memory.more_info(psutil.virtual_memory().percent, 50))
         layout["UB1_1"].update(weather.weather_API())
+        layout["UB1_2"].update(pc.CPU(psutil.cpu_percent(), 50))
         
         if keyboard.is_pressed("esc"):
             sys.exit()
