@@ -24,7 +24,7 @@ console = Console()
 
 layout.split_column(
     Layout(name = "Header", size = 3),
-    Layout(name = "Body"),
+    Layout(name = "Body", size = 30),
     Layout(name = "Footer", size = 3)
 )
 layout["Body"].split_row(
@@ -55,8 +55,19 @@ class Footer:
         f_grid.add_row("🧠", "[b]Good Day Sir, All Systems Online", "📑")
 
         return Panel(f_grid, style = "Bold white on black")
+
+def test_layout_panel():
+    Panel1 = Panel("- Cook Rice", style = "bold white", box = box.SQUARE)
+    Panel2 = Panel("- Study Economics", style = "bold white", box = box.SQUARE)
+    Panel3 = Panel("- Trading at S&P 500", style = "bold white", box = box.SQUARE)
+    
+    return Panel1
+    return Panel2
+    return Panel3
     
 layout["Header"].update(Header())
 layout["Footer"].update(Footer())
+
+layout["To-Do"].update(test_layout_panel())
 
 print(layout)
