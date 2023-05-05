@@ -19,55 +19,52 @@ from time import sleep
 import psutil
 import platform
 
-layout = Layout()
-console = Console()
+tasks = []
 
-layout.split_column(
-    Layout(name = "Header", size = 3),
-    Layout(name = "Body", size = 30),
-    Layout(name = "Footer", size = 3)
-)
-layout["Body"].split_row(
-    Layout(name = "To-Do"),
-    Layout(name = "In Progress"),
-    Layout(name = "Completed"),
-    Layout(name = "Daily")
-)
+# Add a task to the list
+def add_task(task):
+    tasks.append(task)
 
-class Header:
-    def __rich__(self) -> Panel:
-        grid = Table.grid(expand = True)
-        grid.add_column(justify="left")
-        grid.add_column(justify="center", ratio=1)
-        grid.add_column(justify="right")
+# Delete a task from the list
+def delete_task(task):
+    tasks.remove(task)
 
-        grid.add_row("🧠", "[b]J.A.R.V.I.S[/] [b i red]To-Do App[/]", datetime.now().ctime().replace(":", "[blink]:[/]"))
+# Update a task in the list
+def update_task(old_task, new_task):
+    index = tasks.index(old_task)
+    tasks[index] = new_task
 
-        return Panel(grid, style = "Bold white on Black")
+# Print the list of tasks
+def print_tasks():
+    print("Tasks:")
+    for i, task in enumerate(tasks):
+        print(f"{i+1}. {task}")
 
-class Footer:
-    def __rich__(self) -> Panel:
-        f_grid = Table.grid(expand=True)
-        f_grid.add_column(justify="left")
-        f_grid.add_column(justify="center")
-        f_grid.add_column(justify="right")
-
-        f_grid.add_row("🧠", "[b]Good Day Sir, All Systems Online", "📑")
-
-        return Panel(f_grid, style = "Bold white on black")
-
-def test_layout_panel():
-    Panel1 = Panel("- Cook Rice", style = "bold white", box = box.SQUARE)
-    Panel2 = Panel("- Study Economics", style = "bold white", box = box.SQUARE)
-    Panel3 = Panel("- Trading at S&P 500", style = "bold white", box = box.SQUARE)
+# Main program loop
+while True:
+    print(" ")
+    print("1. Add task")
+    print("2. Delete task")
+    print("3. Update task")
+    print("4. Print tasks")
+    print("5. Quit")
+    print(" ")
+    choice = input("Enter your choice: ")
     
-    return Panel1
-    return Panel2
-    return Panel3
-    
-layout["Header"].update(Header())
-layout["Footer"].update(Footer())
-
-layout["To-Do"].update(test_layout_panel())
-
-print(layout)
+    if choice == "1":
+        task = input("Enter the task to add: ")
+        add_task(task)
+    elif choice == "2":
+        task = input("Enter the task to delete: ")
+        delete_task(task)
+    elif choice == "3":
+        old_task = input("Enter the task to update: ")
+        new_task = input("Enter the new task: ")
+        update_task(old_task, new_task)
+    elif choice == "4":
+        print(" ")
+        print_tasks()
+    elif choice == "5":
+        break
+    else:
+        print("Invalid choice. Try again.")
